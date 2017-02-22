@@ -1,12 +1,5 @@
-#
-# BAM_ANES2012.r
-#
-library(foreign)
-library(rjags)
-library(coda)
-library(basicspace)
-library(lattice)
-#
+pacakges<-c("foreign","rjags","coda","basicspace","lattice")
+sapply(packages,require,character.only=T)
 #
 ANES2012 <- read.dta("ANES2012.dta", convert.factors=FALSE)
 attach(ANES2012)

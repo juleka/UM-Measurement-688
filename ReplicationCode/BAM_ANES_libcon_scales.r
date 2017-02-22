@@ -1,25 +1,12 @@
-# yo what up dawg
 
-#
-# BAM_ANES_libcon_scales.r
-#
-library(foreign)
-library(rjags)
-library(coda)
-library(basicspace)
-library(lattice)
-library(latticeExtra)
-library(overlap)
-library(apsrtable)
-library(lmtest)
-library(DAMisc)
-#
-#
+packages<-c("foreign","rjags","coda","basicspace","lattice","latticeExtra","overlap","apsrtable","lmtest","DAMisc")
+sapply(packages,require,character.only=T)
+
 # %%%%%%%%%%%%%%%   2012   %%%%%%%%%%%%%%%
-#
+
 ANES2012 <- read.dta("ANES2012.dta", convert.factors=FALSE)
 attach(ANES2012)
-#
+
 # =============================================================
 #       LIBERAL-CONSERVATIVE SCALE RESULTS:
 #

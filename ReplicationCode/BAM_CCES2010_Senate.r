@@ -1,15 +1,6 @@
-#
-# BAM_CCES2010_Senate.r
-#
-library(foreign)
-library(rjags)
-library(coda)
-library(basicspace)
-library(ggplot2)
-library(lattice)
-library(maps)
-library(maptools)
-library(rgdal)
+pacakges<-c("foreign","rjags","coda","basicspace","lattice","ggplot2","maps","maptools","rgdal")
+sapply(packages,require,character.only=T)
+
 #
 set.seed(1985)
 #
