@@ -1,4 +1,4 @@
-pacakges<-c("foreign","rjags","coda","basicspace","lattice","ggplot2","maps","maptools","rgdal")
+packages<-c("foreign","rjags","coda","basicspace","lattice","ggplot2","maps","maptools","rgdal")
 sapply(packages,require,character.only=T)
 
 #

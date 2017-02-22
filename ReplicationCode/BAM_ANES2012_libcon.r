@@ -1,4 +1,4 @@
-pacakges<-c("foreign","rjags","coda","basicspace","lattice")
+packages<-c("foreign","rjags","coda","basicspace","lattice")
 sapply(packages,require,character.only=T)
 #
 ANES2012 <- read.dta("ANES2012.dta", convert.factors=FALSE)
