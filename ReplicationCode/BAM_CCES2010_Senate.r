@@ -1,15 +1,6 @@
-#
-# BAM_CCES2010_Senate.r
-#
-library(foreign)
-library(rjags)
-library(coda)
-library(basicspace)
-library(ggplot2)
-library(lattice)
-library(maps)
-library(maptools)
-library(rgdal)
+pacakges<-c("foreign","rjags","coda","basicspace","lattice","ggplot2","maps","maptools","rgdal")
+sapply(packages,require,character.only=T)
+
 #
 set.seed(1985)
 #
@@ -266,7 +257,7 @@ zhat.starts[4] <- 1 + runif(1,-0.099,0.099)
 #
 inits <- function() {list (zhat=zhat.starts, a=alpha.starts, b=beta.starts)}
 #
-BAM.sim <- jags.model('c:/Dropbox/BAM/CCES_2010/BAM_JAGScode_CCES2010.bug',
+BAM.sim <- jags.model('BAM_JAGScode_CCES2010.bug',
     data = list('z' = z, 'q' = q, 'N' = N),
     inits = inits, n.chains = 2, n.adapt = 5000)
 #
@@ -277,12 +268,12 @@ samps <- coda.samples(BAM.sim, params, n.iter=10000, thin=10)
 #
 #
 # Write results to disk:
-save(samps,file="c:/Dropbox/BAM/CCES_2010/CCES2010_Senate_samps.Rda")
+save(samps,file="CCES2010_Senate_samps.Rda")
 #
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
 #
 # Load results from disk:
-load("c:/Dropbox/BAM/CCES_2010/CCES2010_Senate_samps.Rda") 
+load("CCES2010_Senate_samps.Rda") 
 #
 #
 #   MCMC DIAGNOSTICS
@@ -323,12 +314,12 @@ libcon_sigmaj.sq <- summary(samps[,grep("sigmaj.sq", colnames(samps[[1]]))])
 #
 bayes.out <- cbind(libcon_zhat[[1]][,1],libcon_zhat[[2]][,1],libcon_zhat[[2]][,5])
 colnames(bayes.out) <- c("Mean","LB","UB")
-senate.results <- read.csv("c:/Dropbox/BAM/CCES_2010/Senate_results.csv", header=TRUE)
+senate.results <- read.csv("Senate_results.csv", header=TRUE)
 rownames(bayes.out) <- senate.results$LABEL2
 # 
 bayes.out2 <- bayes.out[order(bayes.out[,1]), ]
 #
-pdf('c:/Dropbox/BAM/CCES_2010/CCES2010_caterpillar.pdf', width=10, height=10)
+pdf('CCES2010_caterpillar.pdf', width=10, height=10)
 rx1 <- dotplot(bayes.out2[1:70,1],cex=0.0, xlim=c(-1.5, 1.5),
 	xlab=list(label = "Liberal - Conservative", cex=1.1),
 	main="Stimuli Estimates with 95% Credible Intervals",
@@ -445,7 +436,7 @@ table(bvalues.pos,vote_pri10)
 #
 library(apsrtable)
 #
-senate.results <- read.csv("c:/Dropbox/BAM/CCES_2010/Senate_results.csv", header=TRUE)
+senate.results <- read.csv("Senate_results.csv", header=TRUE)
 #
 result.all <- lm(senate.results$MEAN ~ senate.results$DWNOM.COMMON + senate.results$CFSCORE)
 #
@@ -470,7 +461,7 @@ test <- test[senate.results$INCORCOMPRACE==1,]
 test.parties <- senate.results$PARTY
 test.parties <- test.parties[senate.results$INCORCOMPRACE==1]
 #
-pdf('c:/Dropbox/BAM/CCES_2010/CCES2010_correlations_bw.pdf', width=8, height=8)
+pdf('CCES2010_correlations_bw.pdf', width=8, height=8)
 panel.cor <- function(x, y, digits = 2, cex.cor, ...)
 {
   usr <- par("usr"); on.exit(par(usr))
@@ -508,7 +499,7 @@ dev.off()
 #
 #  MAPS
 #
-BAM <- read.csv("c:/Dropbox/BAM/CCES_2010/state_alpha_values.csv", header=TRUE)
+BAM <- read.csv("state_alpha_values.csv", header=TRUE)
 head(BAM)
 #
 fixup <- function(usa,alaskaFix,hawaiiFix){

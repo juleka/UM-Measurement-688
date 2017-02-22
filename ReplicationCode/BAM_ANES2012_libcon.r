@@ -1,12 +1,5 @@
-#
-# BAM_ANES2012.r
-#
-library(foreign)
-library(rjags)
-library(coda)
-library(basicspace)
-library(lattice)
-#
+pacakges<-c("foreign","rjags","coda","basicspace","lattice")
+sapply(packages,require,character.only=T)
 #
 ANES2012 <- read.dta("ANES2012.dta", convert.factors=FALSE)
 attach(ANES2012)
@@ -58,7 +51,7 @@ zhat.starts[2] <- 1 + runif(1,-0.099,0.099)
 #
 inits <- function() {list (zhat=zhat.starts, a=alpha.starts, b=beta.starts)}
 #
-BAM.sim <- jags.model('c:/Dropbox/BAM/ANES/ANES_2012/BAM_JAGScode_ANES2012.bug',
+BAM.sim <- jags.model('BAM_JAGScode_ANES2012.bug',
     data = list('z' = z, 'q' = q, 'N' = N),
     inits = inits, n.chains = 2, n.adapt = 5000)
 #
@@ -69,7 +62,7 @@ samps <- coda.samples(BAM.sim, params, n.iter=10000, thin=10)
 #
 #
 # Write results to disk:
-save(samps,file="c:/Dropbox/BAM/ANES/ANES_2012/ANES2012_samps_libcon.Rda")
+save(samps,file="ANES2012_samps_libcon.Rda")
 #
 #
 #   MCMC DIAGNOSTICS

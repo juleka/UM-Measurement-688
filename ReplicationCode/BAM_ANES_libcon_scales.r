@@ -1,25 +1,12 @@
-# yo what up dawg
 
-#
-# BAM_ANES_libcon_scales.r
-#
-library(foreign)
-library(rjags)
-library(coda)
-library(basicspace)
-library(lattice)
-library(latticeExtra)
-library(overlap)
-library(apsrtable)
-library(lmtest)
-library(DAMisc)
-#
-#
+packages<-c("foreign","rjags","coda","basicspace","lattice","latticeExtra","overlap","apsrtable","lmtest","DAMisc")
+sapply(packages,require,character.only=T)
+
 # %%%%%%%%%%%%%%%   2012   %%%%%%%%%%%%%%%
-#
+
 ANES2012 <- read.dta("ANES2012.dta", convert.factors=FALSE)
 attach(ANES2012)
-#
+
 # =============================================================
 #       LIBERAL-CONSERVATIVE SCALE RESULTS:
 #
@@ -66,7 +53,7 @@ libcon_presvote.2012[libcon_presvote.2012==5] <- NA
 libcon_presvote.2012[libcon_presvote.2012 < 0] <- NA
 libcon_presvote.2012 <- libcon_presvote.2012 - 1 
 #
-load("c:/Dropbox/BAM/ANES/ANES_2012/ANES2012_samps_libcon.Rda")
+load("ANES2012_samps_libcon.Rda")
 libcon_samps.2012 <- samps
 #
 libcon_zhat.2012 <- summary(libcon_samps.2012[,grep("zhat", colnames(libcon_samps.2012[[1]]))])
@@ -312,7 +299,7 @@ party.summary.overlap.2012_libcon.self <- summary.overlap.2012_libcon.self
 # %%%%%%%%%%%%%%%   2008   %%%%%%%%%%%%%%%
 #
 detach(ANES2012)
-ANES2008 <- read.dta("c:/Dropbox/BAM/ANES/ANES_2008/ANES2008.dta", convert.factors=FALSE)
+ANES2008 <- read.dta("ANES2008.dta", convert.factors=FALSE)
 attach(ANES2008)
 #
 # =============================================================
@@ -367,7 +354,7 @@ libcon_presvote.2008 <- libcon_presvote.2008 - 1
 #
 #
 rm(samps)
-load("c:/Dropbox/BAM/ANES/ANES_2008/ANES2008_samps_libcon.Rda")
+load("ANES2008_samps_libcon.Rda")
 libcon_samps.2008 <- samps
 #
 libcon_zhat.2008 <- summary(libcon_samps.2008[,grep("zhat", colnames(libcon_samps.2008[[1]]))])
@@ -622,7 +609,7 @@ party.summary.overlap.2008_libcon.self <- summary.overlap.2008_libcon.self
 # %%%%%%%%%%%%%%%   2004   %%%%%%%%%%%%%%%
 #
 detach(ANES2008)
-ANES2004 <- read.dta("c:/Dropbox/BAM/ANES/ANES_2004/ANES2004.dta", convert.factors=FALSE)
+ANES2004 <- read.dta("ANES2004.dta", convert.factors=FALSE)
 attach(ANES2004)
 #
 # =============================================================
@@ -679,7 +666,7 @@ libcon_presvote.2004 <- libcon_presvote.2004[rowSums(!is.na(libcon_TT.2004)) >= 
 #
 #
 rm(samps)
-load("c:/Dropbox/BAM/ANES/ANES_2004/ANES2004_samps_libcon.Rda")
+load("ANES2004_samps_libcon.Rda")
 libcon_samps.2004 <- samps
 #
 libcon_zhat.2004 <- summary(libcon_samps.2004[,grep("zhat", colnames(libcon_samps.2004[[1]]))])
@@ -1048,7 +1035,7 @@ libcon.positive.weights.dens.2012 <- density(libcon.positive.weights.2012)
 libcon.positive.weights.dens.2012$y <- libcon.positive.weights.dens.2012$y*libcon.positive.weights.Share.2012
 #
 #
-pdf('c:/Dropbox/BAM/ANES/ANES2012_raw_corrected_libcon.pdf', width=8, height=4)
+pdf('ANES2012_raw_corrected_libcon.pdf', width=8, height=4)
 #
 par(mfrow=c(1,2))
 #
@@ -1196,7 +1183,7 @@ libcon.positive.weights.dens.2012 <- density(libcon.positive.weights.2012)
 libcon.positive.weights.dens.2012$y <- libcon.positive.weights.dens.2012$y*libcon.positive.weights.Share.2012
 #
 #
-pdf('c:/Dropbox/BAM/ANES/ANES2012_raw_corrected_libcon_alternate.pdf', width=8, height=4)
+pdf('ANES2012_raw_corrected_libcon_alternate.pdf', width=8, height=4)
 #
 par(mfrow=c(1,2))
 #
