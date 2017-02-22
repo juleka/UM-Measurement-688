@@ -273,7 +273,7 @@ save(samps,file="CCES2010_Senate_samps.Rda")
 # !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!  
 #
 # Load results from disk:
-load("c:/Dropbox/BAM/CCES_2010/CCES2010_Senate_samps.Rda") 
+load("CCES2010_Senate_samps.Rda") 
 #
 #
 #   MCMC DIAGNOSTICS
