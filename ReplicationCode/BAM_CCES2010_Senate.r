@@ -13,7 +13,7 @@ library(rgdal)
 #
 set.seed(1985)
 #
-CCES2010 <- read.dta("c:/Dropbox/BAM/CCES_2010/CCES2010.dta", convert.factors=FALSE)
+CCES2010 <- read.dta("CCES2010.dta", convert.factors=FALSE)
 #
 attach(CCES2010)
 #

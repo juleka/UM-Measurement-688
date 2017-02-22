@@ -8,7 +8,7 @@ library(basicspace)
 library(lattice)
 #
 #
-ANES2004 <- read.dta("c:/Dropbox/BAM/ANES/ANES_2004/ANES2004.dta", convert.factors=FALSE)
+ANES2004 <- read.dta("ANES2004.dta", convert.factors=FALSE)
 attach(ANES2004)
 #
 #     

@@ -17,7 +17,7 @@ library(DAMisc)
 #
 # %%%%%%%%%%%%%%%   2012   %%%%%%%%%%%%%%%
 #
-ANES2012 <- read.dta("c:/Dropbox/BAM/ANES/ANES_2012/ANES2012.dta", convert.factors=FALSE)
+ANES2012 <- read.dta("ANES2012.dta", convert.factors=FALSE)
 attach(ANES2012)
 #
 # =============================================================
