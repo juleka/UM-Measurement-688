@@ -61,7 +61,7 @@ zhat.starts[2] <- -1 + runif(1,-0.099,0.099)
 #
 inits <- function() {list (zhat=zhat.starts, a=alpha.starts, b=beta.starts)}
 #
-BAM.sim <- jags.model('c:/Dropbox/BAM/ANES/ANES_2004/BAM_JAGScode_ANES2004.bug',
+BAM.sim <- jags.model('BAM_JAGScode_ANES2004.bug',
     data = list('z' = z, 'q' = q, 'N' = N),
     inits = inits, n.chains = 2, n.adapt = 5000)
 #
@@ -72,7 +72,7 @@ samps <- coda.samples(BAM.sim, params, n.iter=10000, thin=10)
 #
 #
 # Write results to disk:
-save(samps,file="c:/Dropbox/BAM/ANES/ANES_2004/ANES2004_samps_libcon.Rda")
+save(samps,file="ANES2004_samps_libcon.Rda")
 #
 #
 #   MCMC DIAGNOSTICS
